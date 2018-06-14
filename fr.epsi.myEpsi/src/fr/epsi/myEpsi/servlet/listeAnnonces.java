@@ -51,6 +51,7 @@ public class listeAnnonces extends HttpServlet {
     		logger.error("Connexion ok à la BDD");
         	//con.close();
     		ResultSet résultats = null;
+    		messages.clear();
             String requete = "SELECT * FROM ANNONCES";
             try {            	
             	PreparedStatement pt = con.prepareStatement(requete);
@@ -71,7 +72,7 @@ public class listeAnnonces extends HttpServlet {
                 }
                 logger.error("REUSSITE de la requete");
                 for  (int i = 0; i < messages.size(); i++) {
-                	logger.error(messages.get(i));	
+                	/**logger.error(messages.get(i));**/	
                 }
             } catch (SQLException e) {
            	 logger.error("ECHEC de la requete");

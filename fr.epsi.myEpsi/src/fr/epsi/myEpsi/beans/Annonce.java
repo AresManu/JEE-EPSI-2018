@@ -16,6 +16,10 @@ public class Annonce {
 	private Utilisateur acheteur;
 	private Date achat;
 	
+	public Annonce() {
+		 	     
+	}
+	
 	public Annonce(String id,String titre, String contenu) {
 		 this.setId(Integer.parseInt(id));
 	     this.setTitre(titre);

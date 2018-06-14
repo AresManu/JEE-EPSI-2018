@@ -22,6 +22,15 @@
 		<servlet-name>listeAnnonces</servlet-name>
 		<url-pattern>/listeannonces</url-pattern>
 </servlet-mapping>
+
+<servlet>
+	<servlet-name>creerAnnonces</servlet-name>
+	<servlet-class>fr.epsi.myEpsi.servlet.creerAnnonces</servlet-class>
+</servlet>
+<servlet-mapping>
+		<servlet-name>creerAnnonces</servlet-name>
+		<url-pattern>/creerannonces</url-pattern>
+</servlet-mapping>
   
 <jsp-config>
         <jsp-property-group>
