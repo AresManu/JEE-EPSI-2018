@@ -26,8 +26,8 @@ import fr.epsi.myEpsi.listeners.StartupListener;
 /**
  * Servlet implementation class login
  */
-@WebServlet("/creerAnnonces")
-public class creerAnnonces extends HttpServlet {
+@WebServlet("/creerUtilisateur")
+public class creerUtilisateur extends HttpServlet {
 	private static final Logger logger = LogManager.getLogger(StartupListener.class);
 	private static final long serialVersionUID = 1L;
 	private int message = 0;
@@ -35,7 +35,7 @@ public class creerAnnonces extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public creerAnnonces() {
+    public creerUtilisateur() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,8 +45,8 @@ public class creerAnnonces extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
-		logger.error("Accès à la page de création d'annonces");
-		request.getRequestDispatcher("creerannonce.html").forward(request, response);
+		logger.error("Accès à la page de création d'utilisateur");
+		request.getRequestDispatcher("creerutilisateur.html").forward(request, response);
 		
 		
 	}
@@ -56,39 +56,33 @@ public class creerAnnonces extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		logger.error("Ajout d'une annonce");	
-		String titre = request.getParameter("titre");
-		String description = request.getParameter("description");
-		int id=0;
+		logger.error("Ajout d'un utilisateur");	
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		String nom = request.getParameter("nom");
+		
 		
 		//-------------------------------------ma cuisine----------------------------
-		message=0;
+		
 		logger.error("Test de connexion à la bdd");
     	try {
     		Class.forName("org.hsqldb.jdbcDriver");
     		Connection con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9003","SA","");
     		logger.error("Connexion ok à la bdd");
         	//con.close();
-    		String requete1 = "SELECT MAX(ID) FROM ANNONCES";
     		ResultSet résultats = null;
-            String requete = "INSERT INTO ANNONCES (ID,TITLE, CONTENT) VALUES (?,?,?);";
+            String requete = "INSERT INTO UTILISATEURS (ID,PASSWORD,NAME) VALUES (?,?,?);";
             try {
             	logger.error("id : "+id);
-            	PreparedStatement pt1 = con.prepareStatement(requete1);
-            	résultats = pt1.executeQuery();
-            	while (résultats.next() ) {
-                    int idUtilisateur = résultats.getInt(1);          
-                    message=idUtilisateur;
-                    }
-            	id=message;
-            	logger.error("id trouvée: "+id);
+            	
             	PreparedStatement pt = con.prepareStatement(requete);
-            	pt.setObject(1,id+1, Types.BIGINT);
-            	pt.setObject(2,titre, Types.VARCHAR); 
-            	pt.setObject(3,description,Types.VARCHAR); 
-            	pt.executeUpdate();            	
+            	pt.setObject(1,id, Types.VARCHAR);
+            	pt.setObject(2,password, Types.VARCHAR); 
+            	pt.setObject(3,nom,Types.VARCHAR); 
+            	pt.executeUpdate();             	
                 logger.error("REUSSITE de l'insert"); 
                 con.commit();
+                
             } catch (SQLException e) {
            	 logger.error("ECHEC de l'insert",e);
             }   	

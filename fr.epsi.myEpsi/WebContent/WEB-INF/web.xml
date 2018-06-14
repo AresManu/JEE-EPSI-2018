@@ -31,6 +31,16 @@
 		<servlet-name>creerAnnonces</servlet-name>
 		<url-pattern>/creerannonces</url-pattern>
 </servlet-mapping>
+
+<servlet>
+	<servlet-name>creerUtilisateur</servlet-name>
+	<servlet-class>fr.epsi.myEpsi.servlet.creerUtilisateur</servlet-class>
+</servlet>
+<servlet-mapping>
+		<servlet-name>creerUtilisateur</servlet-name>
+		<url-pattern>/creerutilisateur</url-pattern>
+</servlet-mapping>
+
   
 <jsp-config>
         <jsp-property-group>

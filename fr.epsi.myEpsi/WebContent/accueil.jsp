@@ -15,6 +15,8 @@ Bonjour <%= utilisateur.getId() %>
 <p>
 
 <p><a href="listeannonces">Afficher les annonces</a></p>
+
+<p><a href="creerutilisateur">Nouvel Utilisateur</a></p>
 </p>
 </body>
 </html>
